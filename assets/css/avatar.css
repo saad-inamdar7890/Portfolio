@@ -1,0 +1,230 @@
+/* ===================================
+   Interactive Avatar Styles
+   =================================== */
+
+.avatar-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Fixed position avatar in bottom-left corner */
+.avatar-container.avatar-fixed {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 150px;
+    height: 150px;
+    z-index: 999;
+    margin: 0;
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.avatar-container:hover {
+    transform: scale(1.1);
+}
+
+.avatar-container svg,
+.avatar-container object {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Avatar pupils smooth movement */
+#left-pupil,
+#right-pupil {
+    transition: cx 0.2s ease-out, cy 0.2s ease-out;
+}
+
+/* Eye blink animation */
+#left-eye,
+#right-eye {
+    transform-origin: center;
+    transition: transform 0.1s ease;
+}
+
+/* Eyebrow animation */
+#left-eyebrow,
+#right-eyebrow {
+    transition: d 0.3s ease;
+}
+
+/* Mouth animation */
+#mouth-path {
+    transition: d 0.3s ease;
+}
+
+/* Floating animation for the avatar */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.avatar-container.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Glow effect on hover */
+.avatar-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, var(--color-mint) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.avatar-container.avatar-fixed::before {
+    width: 170px;
+    height: 170px;
+}
+
+.avatar-container:hover::before {
+    opacity: 0.4;
+}
+
+/* Pulse animation for attention */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(0, 255, 255, 0);
+    }
+}
+
+.avatar-container.avatar-fixed {
+    animation: slideInFromLeft 0.8s ease-out, pulse 3s infinite 2s;
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+    .avatar-container {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .avatar-container::before {
+        width: 170px;
+        height: 170px;
+    }
+
+    .avatar-container.avatar-fixed {
+        width: 100px;
+        height: 100px;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .avatar-container.avatar-fixed::before {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .avatar-container::before {
+        width: 140px;
+        height: 140px;
+    }
+
+    .avatar-container.avatar-fixed {
+        width: 80px;
+        height: 80px;
+        bottom: 15px;
+        left: 15px;
+    }
+
+    .avatar-container.avatar-fixed::before {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Alternative: Avatar in navbar (smaller size) */
+.nav-avatar-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.nav-avatar-container svg,
+.nav-avatar-container object {
+    width: 100%;
+    height: 100%;
+}
+
+/* Speech bubble on hover */
+.avatar-container::after {
+    content: 'Hi there! 👋';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 8px;
+}
+
+.avatar-container::after {
+    border: 2px solid var(--color-mint, #00ffff);
+}
+
+.avatar-container:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Speech bubble arrow */
+.avatar-container.avatar-fixed::after {
+    content: 'My eyes follow you! 👀';
+}
+
+/* Dark mode support */
+body.dark-theme .avatar-container::after {
+    background: rgba(30, 30, 30, 0.95);
+    color: #fff;
+    border-color: var(--color-lilac, #ff00ff);
+}
