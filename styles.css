@@ -794,6 +794,13 @@ body.dark-theme .shape {
     100% { opacity: 0; top: 25px; }
 }
 
+/* Hide scroll indicator on mobile */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        display: none;
+    }
+}
+
 /* Fade-in Animation */
 .fade-in {
     animation: fadeIn 1.2s ease-out;
