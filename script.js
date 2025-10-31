@@ -324,32 +324,6 @@ skillTags.forEach(tag => {
 });
 
 // ===============================
-// Project Card Tilt Effect (Optional)
-// ===============================
-
-const projectCardsList = document.querySelectorAll('.project-card');
-
-projectCardsList.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
-});
-
-// ===============================
 // Lazy Loading for Images
 // ===============================
 
@@ -445,4 +419,176 @@ console.log('%c🌐 Check out the code on GitHub', 'color: #14b8a6; font-size: 1
 window.addEventListener('load', () => {
     const loadTime = performance.now();
     console.log(`⚡ Page loaded in ${loadTime.toFixed(2)}ms`);
+});
+
+// ===============================
+// Expandable Project Cards
+// ===============================
+
+class ProjectCardExpander {
+    constructor() {
+        this.projectCards = document.querySelectorAll('.project-card');
+        this.init();
+    }
+
+    init() {
+        this.projectCards.forEach(card => {
+            const expandBtn = card.querySelector('.expand-btn');
+            const closeBtn = card.querySelector('.close-expanded');
+            
+            // Make entire card clickable
+            card.addEventListener('click', (e) => {
+                // Don't expand if clicking on links or buttons
+                if (e.target.closest('.project-btn') || 
+                    e.target.closest('.close-expanded') ||
+                    e.target.closest('.carousel-btn') ||
+                    e.target.closest('.indicator')) {
+                    return;
+                }
+                this.toggleCard(card);
+            });
+            
+            if (expandBtn) {
+                expandBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleCard(card);
+                });
+            }
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.closeCard(card);
+                });
+            }
+            
+            // Initialize carousel for this card
+            this.initCarousel(card);
+        });
+    }
+
+    toggleCard(card) {
+        const isExpanded = card.classList.contains('expanded');
+        
+        // Close all other cards
+        this.projectCards.forEach(c => {
+            if (c !== card) {
+                this.closeCard(c);
+            }
+        });
+        
+        if (isExpanded) {
+            this.closeCard(card);
+        } else {
+            this.openCard(card);
+        }
+    }
+
+    openCard(card) {
+        card.classList.add('expanded');
+        const expandBtn = card.querySelector('.expand-btn');
+        if (expandBtn) {
+            expandBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
+        }
+        
+        // Scroll to the card smoothly
+        setTimeout(() => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    }
+
+    closeCard(card) {
+        card.classList.remove('expanded');
+        const expandBtn = card.querySelector('.expand-btn');
+        if (expandBtn) {
+            expandBtn.innerHTML = '<i class="fas fa-chevron-down"></i> View Details';
+        }
+    }
+
+    initCarousel(card) {
+        const carousel = card.querySelector('.project-carousel');
+        if (!carousel) return;
+
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const indicators = carousel.querySelectorAll('.indicator');
+        const prevBtn = carousel.querySelector('.carousel-btn.prev');
+        const nextBtn = carousel.querySelector('.carousel-btn.next');
+        
+        if (slides.length <= 1) {
+            // Hide carousel controls if only one image
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (indicators.length > 0) {
+                indicators.forEach(ind => ind.style.display = 'none');
+            }
+            return;
+        }
+
+        let currentSlide = 0;
+
+        const showSlide = (index) => {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(ind => ind.classList.remove('active'));
+            
+            currentSlide = (index + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            if (indicators[currentSlide]) {
+                indicators[currentSlide].classList.add('active');
+            }
+        };
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSlide(currentSlide - 1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSlide(currentSlide + 1);
+            });
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSlide(index);
+            });
+        });
+
+        // Keyboard navigation
+        card.addEventListener('keydown', (e) => {
+            if (!card.classList.contains('expanded')) return;
+            
+            if (e.key === 'ArrowLeft') {
+                showSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight') {
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        // Auto-play (optional)
+        // let autoPlayInterval;
+        // const startAutoPlay = () => {
+        //     autoPlayInterval = setInterval(() => {
+        //         showSlide(currentSlide + 1);
+        //     }, 5000);
+        // };
+        
+        // const stopAutoPlay = () => {
+        //     clearInterval(autoPlayInterval);
+        // };
+        
+        // carousel.addEventListener('mouseenter', stopAutoPlay);
+        // carousel.addEventListener('mouseleave', startAutoPlay);
+        // startAutoPlay();
+    }
+}
+
+// Initialize project card expander
+document.addEventListener('DOMContentLoaded', () => {
+    new ProjectCardExpander();
 });
