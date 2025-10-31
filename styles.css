@@ -1242,43 +1242,81 @@ body.dark-theme .project-btn.secondary:hover {
     transition: transform var(--transition-normal);
 }
 
-.project-card.expanded .expand-btn i {
-    transform: rotate(180deg);
+/* Project Modal Overlay */
+.project-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Expanded Content */
-.project-expanded {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
+.project-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Project Modal Card */
+.project-modal {
+    background: white;
+    border-radius: 16px;
+    max-width: 1000px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.8) translateY(50px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .project-modal {
     background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
 }
 
-body.dark-theme .project-expanded {
-    background: rgba(0, 0, 0, 0.3);
+.project-modal-overlay.active .project-modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
 }
 
-.project-card.expanded .project-expanded {
-    max-height: 2000px;
-    transition: max-height 0.6s ease-in;
-}
-
-.expanded-header {
+/* Modal Header */
+.modal-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
-    border-bottom: 2px solid var(--border-color);
 }
 
-.expanded-header h4 {
-    font-size: 1.4rem;
+body.dark-theme .modal-header {
+    background: var(--bg-secondary);
+}
+
+.modal-header h3 {
+    font-size: 1.75rem;
     color: var(--text-primary);
+    margin: 0;
 }
 
-.close-expanded {
-    width: 36px;
-    height: 36px;
+.modal-close {
+    width: 40px;
+    height: 40px;
     background: var(--secondary-color);
     color: white;
     border: none;
@@ -1288,21 +1326,83 @@ body.dark-theme .project-expanded {
     align-items: center;
     justify-content: center;
     transition: all var(--transition-fast);
+    font-size: 1.2rem;
 }
 
-.close-expanded:hover {
+.modal-close:hover {
     transform: rotate(90deg);
     background: var(--primary-dark);
 }
 
+/* Modal Content */
+.modal-content {
+    padding: 2rem;
+}
+
+.modal-project-type {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.modal-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.modal-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.modal-tech span {
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.modal-actions .project-btn {
+    flex: 1;
+    min-width: 160px;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* Expanded Content (kept for backward compatibility but hidden) */
+.project-expanded {
+    display: none;
+}
+
 /* Image Carousel */
 .project-carousel {
-    padding: 1.5rem;
-    background: white;
+    padding: 0;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
 }
 
 body.dark-theme .project-carousel {
-    background: var(--bg-dark);
+    background: #000;
 }
 
 .carousel-container {
@@ -1314,7 +1414,7 @@ body.dark-theme .project-carousel {
 
 .carousel-slides {
     position: relative;
-    height: 400px;
+    height: 500px;
     display: flex;
 }
 
@@ -1337,13 +1437,13 @@ body.dark-theme .project-carousel {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.9);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.95);
     border: none;
     border-radius: 50%;
     color: var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: all var(--transition-fast);
     z-index: 10;
@@ -1354,15 +1454,16 @@ body.dark-theme .project-carousel {
 
 .carousel-btn:hover {
     background: white;
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-btn.prev {
-    left: 15px;
+    left: 20px;
 }
 
 .carousel-btn.next {
-    right: 15px;
+    right: 20px;
 }
 
 .carousel-btn:disabled {
@@ -1373,13 +1474,18 @@ body.dark-theme .project-carousel {
 .carousel-indicators {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 1rem;
+    gap: 12px;
+    padding: 1.5rem;
+    background: white;
+}
+
+body.dark-theme .carousel-indicators {
+    background: var(--bg-dark);
 }
 
 .indicator {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--border-color);
     cursor: pointer;
@@ -1388,11 +1494,12 @@ body.dark-theme .project-carousel {
 
 .indicator.active {
     background: var(--primary-color);
-    transform: scale(1.3);
+    transform: scale(1.4);
 }
 
 .indicator:hover {
     background: var(--primary-light);
+    transform: scale(1.2);
 }
 
 /* Project Details */
@@ -1449,14 +1556,30 @@ body.dark-theme .project-carousel {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .project-modal-overlay {
+        padding: 1rem;
+    }
+    
+    .modal-header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.4rem;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
+    
     .carousel-slides {
-        height: 250px;
+        height: 300px;
     }
     
     .carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
     }
     
     .carousel-btn.prev {
@@ -1467,8 +1590,22 @@ body.dark-theme .project-carousel {
         right: 10px;
     }
     
-    .expanded-header h4 {
-        font-size: 1.2rem;
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .modal-actions .project-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slides {
+        height: 220px;
+    }
+    
+    .modal-description {
+        font-size: 1rem;
     }
 }
 

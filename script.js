@@ -13,8 +13,8 @@ const themeToggle = document.getElementById('themeToggle');
 // Dark Theme Toggle
 // ===============================
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
+// Check for saved theme preference or default to dark mode
+const currentTheme = localStorage.getItem('theme') || 'dark';
 if (currentTheme === 'dark') {
     document.body.classList.add('dark-theme');
 }
@@ -428,85 +428,166 @@ window.addEventListener('load', () => {
 class ProjectCardExpander {
     constructor() {
         this.projectCards = document.querySelectorAll('.project-card');
+        this.modalOverlay = null;
+        this.currentModal = null;
         this.init();
     }
 
     init() {
+        // Create modal overlay container
+        this.createModalOverlay();
+        
         this.projectCards.forEach(card => {
             const expandBtn = card.querySelector('.expand-btn');
-            const closeBtn = card.querySelector('.close-expanded');
             
             // Make entire card clickable
             card.addEventListener('click', (e) => {
                 // Don't expand if clicking on links or buttons
                 if (e.target.closest('.project-btn') || 
-                    e.target.closest('.close-expanded') ||
                     e.target.closest('.carousel-btn') ||
                     e.target.closest('.indicator')) {
                     return;
                 }
-                this.toggleCard(card);
+                this.openModal(card);
             });
             
             if (expandBtn) {
                 expandBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    this.toggleCard(card);
+                    this.openModal(card);
                 });
             }
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.closeCard(card);
-                });
-            }
-            
-            // Initialize carousel for this card
-            this.initCarousel(card);
         });
     }
 
-    toggleCard(card) {
-        const isExpanded = card.classList.contains('expanded');
-        
-        // Close all other cards
-        this.projectCards.forEach(c => {
-            if (c !== card) {
-                this.closeCard(c);
+    createModalOverlay() {
+        this.modalOverlay = document.createElement('div');
+        this.modalOverlay.className = 'project-modal-overlay';
+        this.modalOverlay.addEventListener('click', (e) => {
+            if (e.target === this.modalOverlay) {
+                this.closeModal();
             }
         });
-        
-        if (isExpanded) {
-            this.closeCard(card);
-        } else {
-            this.openCard(card);
-        }
+        document.body.appendChild(this.modalOverlay);
     }
 
-    openCard(card) {
-        card.classList.add('expanded');
-        const expandBtn = card.querySelector('.expand-btn');
-        if (expandBtn) {
-            expandBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
+    openModal(card) {
+        // Close any existing modal
+        if (this.currentModal) {
+            this.closeModal();
+        }
+
+        // Extract data from card
+        const title = card.querySelector('.project-header h3').textContent;
+        const type = card.querySelector('.project-type').textContent;
+        const description = card.querySelector('.project-description').textContent;
+        const techStack = Array.from(card.querySelectorAll('.project-tech span')).map(span => span.textContent);
+        const buttons = Array.from(card.querySelectorAll('.project-btn'));
+        
+        // Get expanded content
+        const expandedContent = card.querySelector('.project-expanded');
+        
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'project-modal';
+        
+        // Build modal content
+        let modalHTML = `
+            <div class="modal-header">
+                <h3>${title}</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <span class="modal-project-type">${type}</span>
+                <p class="modal-description">${description}</p>
+                <div class="modal-tech">
+                    ${techStack.map(tech => `<span>${tech}</span>`).join('')}
+                </div>
+        `;
+        
+        // Add action buttons
+        if (buttons.length > 0) {
+            modalHTML += `<div class="modal-actions">`;
+            buttons.forEach(btn => {
+                const href = btn.getAttribute('href');
+                const className = btn.className;
+                const innerHTML = btn.innerHTML;
+                modalHTML += `<a href="${href}" class="${className}" target="_blank" onclick="event.stopPropagation()">${innerHTML}</a>`;
+            });
+            modalHTML += `</div>`;
         }
         
-        // Scroll to the card smoothly
+        // Add carousel and details if expanded content exists
+        if (expandedContent) {
+            const carousel = expandedContent.querySelector('.project-carousel');
+            const details = expandedContent.querySelector('.project-details');
+            
+            if (carousel) {
+                modalHTML += carousel.outerHTML;
+            }
+            
+            if (details) {
+                modalHTML += details.outerHTML;
+            }
+        }
+        
+        modalHTML += `</div>`;
+        
+        modal.innerHTML = modalHTML;
+        
+        // Add to overlay
+        this.modalOverlay.innerHTML = '';
+        this.modalOverlay.appendChild(modal);
+        this.currentModal = modal;
+        
+        // Setup close button
+        const closeBtn = modal.querySelector('.modal-close');
+        closeBtn.addEventListener('click', () => this.closeModal());
+        
+        // Initialize carousel for this modal
+        this.initCarousel(modal);
+        
+        // Show modal with animation
         setTimeout(() => {
-            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
+            this.modalOverlay.classList.add('active');
+        }, 10);
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+        
+        // ESC key to close
+        this.escHandler = (e) => {
+            if (e.key === 'Escape') {
+                this.closeModal();
+            }
+        };
+        document.addEventListener('keydown', this.escHandler);
     }
 
-    closeCard(card) {
-        card.classList.remove('expanded');
-        const expandBtn = card.querySelector('.expand-btn');
-        if (expandBtn) {
-            expandBtn.innerHTML = '<i class="fas fa-chevron-down"></i> View Details';
+    closeModal() {
+        this.modalOverlay.classList.remove('active');
+        
+        // Re-enable body scroll
+        document.body.style.overflow = '';
+        
+        // Remove ESC handler
+        if (this.escHandler) {
+            document.removeEventListener('keydown', this.escHandler);
         }
+        
+        // Clear modal after animation
+        setTimeout(() => {
+            if (this.modalOverlay) {
+                this.modalOverlay.innerHTML = '';
+            }
+            this.currentModal = null;
+        }, 400);
     }
 
-    initCarousel(card) {
-        const carousel = card.querySelector('.project-carousel');
+    initCarousel(container) {
+        const carousel = container.querySelector('.project-carousel');
         if (!carousel) return;
 
         const slides = carousel.querySelectorAll('.carousel-slide');
@@ -560,31 +641,27 @@ class ProjectCardExpander {
         });
 
         // Keyboard navigation
-        card.addEventListener('keydown', (e) => {
-            if (!card.classList.contains('expanded')) return;
-            
+        const keyHandler = (e) => {
             if (e.key === 'ArrowLeft') {
                 showSlide(currentSlide - 1);
             } else if (e.key === 'ArrowRight') {
                 showSlide(currentSlide + 1);
             }
+        };
+        
+        document.addEventListener('keydown', keyHandler);
+        
+        // Clean up on modal close
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (!document.body.contains(carousel)) {
+                    document.removeEventListener('keydown', keyHandler);
+                    observer.disconnect();
+                }
+            });
         });
-
-        // Auto-play (optional)
-        // let autoPlayInterval;
-        // const startAutoPlay = () => {
-        //     autoPlayInterval = setInterval(() => {
-        //         showSlide(currentSlide + 1);
-        //     }, 5000);
-        // };
         
-        // const stopAutoPlay = () => {
-        //     clearInterval(autoPlayInterval);
-        // };
-        
-        // carousel.addEventListener('mouseenter', stopAutoPlay);
-        // carousel.addEventListener('mouseleave', startAutoPlay);
-        // startAutoPlay();
+        observer.observe(document.body, { childList: true, subtree: true });
     }
 }
 
