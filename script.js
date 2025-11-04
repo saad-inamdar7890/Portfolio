@@ -668,4 +668,49 @@ class ProjectCardExpander {
 // Initialize project card expander
 document.addEventListener('DOMContentLoaded', () => {
     new ProjectCardExpander();
+    
+    // Initialize footer stats counter animation
+    initFooterStatsCounter();
 });
+
+// ===============================
+// Footer Stats Counter Animation
+// ===============================
+
+function initFooterStatsCounter() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let animated = false;
+
+    const animateCounter = (element) => {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const steps = 60;
+        const increment = target / steps;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target + (target === 100 ? '+' : '');
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, duration / steps);
+    };
+
+    // Intersection Observer to trigger animation when footer is in view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                animated = true;
+                statNumbers.forEach(stat => animateCounter(stat));
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        observer.observe(footer);
+    }
+}
