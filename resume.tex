@@ -1,0 +1,174 @@
+%-------------------------
+% Resume in LaTeX (edited)
+% Author : Saad Inamdar (adapted from Jake Gutierrez template)
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\usepackage{graphicx}
+
+% Header and footer setup
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+% URL formatting
+\urlstyle{same}
+
+% Line height adjustment
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that the generated PDF is machine-readable/ATS parsable
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%----------HEADING----------
+\begin{center}
+  	\textbf{\Huge \scshape Saad Inamdar} \\ \vspace{1pt}
+  \small 9307258591 $|$ \href{mailto:saadinamdar121@gmail.com}{\underline{saadinamdar121@gmail.com}} $|$ 
+  \href{https://linkedin.com/in/saad-inamdar789}{\underline{LinkedIn}} $|$
+  \href{https://github.com/saad-inamdar7890}{\underline{GitHub}} $|$ \href{https://saad-inamdar7890.github.io/Portfolio/}{\underline{Portfolio}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Jawaharlal Nehru University, New Delhi}{CGPA: 7.63}
+      {Bachelor of Technology in Computer Science}{2022 -- Present}
+      % \resumeSubheading
+      % {Nowrosjee Wadia College}{Percentage: 89}
+      % {Intermediate Education in Science, Pune, Maharashtra}{2019 -- 2021}
+  \resumeSubHeadingListEnd
+
+
+%-----------WORK EXPERIENCE-----------
+\section{Work Experience}
+  \resumeSubHeadingListStart
+     % Only Indic Belt Society retained as requested
+    \resumeSubheading
+      {Indic Belt Society -- Full Stack Developer}{Pune, India}
+      {React, PHP, MySQL, RESTful APIs \quad \underline{\href{https://indicbeltsociety.com/}{\texttt{Live Demo}}}}{Aug 2025 -- September 2025}
+      \vspace{-1.0mm}
+      \resumeItemListStart
+        \resumeItem{Spearheaded the end-to-end development of the Indic Belt Society web platform using \textbf{React} for the front-end and \textbf{PHP,MySQL} for backend services, delivering a responsive and accessible experience to users across devices.}
+        \resumeItem{Architected and implemented RESTful APIs and normalized database schemas, improving data integrity and enabling rapid feature development.}
+        \resumeItem{Optimized page load and API response times through query tuning and asset bundling, reducing average latency by \textbf{35\%} and improving user engagement.}
+        \resumeItem{Collaborated with stakeholders to prioritize features and delivered iterative releases, which increased platform usage and community sign-ups month-over-month.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+    {\href{https://github.com/saad-inamdar7890/Traffic-Light-RL}{\textbf{Adaptive Traffic Light Control (Traffic Management)}} $|$ \emph{Python, TensorFlow, SUMO, RL}}{07/2025 -- Present}
+    \resumeItemListStart
+        \resumeItem{Engineered a multi-agent reinforcement learning system to optimize traffic signal timings using \textbf{SUMO} simulations and \textbf{TensorFlow}, achieving a \textbf{74\%} improvement in measured traffic throughput compared to baseline controllers.}
+        \resumeItem{Deployed custom reward engineering and state representations to minimize average vehicle waiting time and reduce congestion at busy intersections, demonstrating measurable system-level impact under varied traffic scenarios.}
+        \resumeItem{Validated performance through large-scale simulation experiments and visualized results with dashboards to support stakeholder decision-making.}
+    \resumeItemListEnd
+
+    \resumeProjectHeading
+    {\href{https://github.com/saad-inamdar7890/OOP-Project.git}{\textbf{Academic Grading System}} $|$ \emph{Java, JavaFX, MySQL, JDBC, MVC Architecture }}{05/2024 -- 07/2024}
+    \resumeItemListStart
+        \resumeItem{Designed and developed a stand-alone desktop application using \textbf{Java} and JavaFX to automate grading workflows for faculty, reducing manual calculation effort by \textbf{60\%}.}
+        \resumeItem{Integrated \textbf{MySQL} with JDBC for secure data management, enabling real-time GPA tracking and maintaining records for \textbf{500+} student entries with \textbf{99\%} uptime.}
+        \resumeItem{Implemented batch import/export features and reporting modules that accelerated administrative tasks and improved accuracy of grade computations.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+  {\href{https://github.com/saad-inamdar7890/Catalogue-Management}{\textbf{Catalogue Management System}} $|$ \emph{Java Spring Boot, PostgreSQL, Google Cloud} \quad \underline{\href{https://aone-agency.netlify.app/}{\texttt{Live Demo}}}}{11/2024 -- Present}
+    \resumeItemListStart
+        \resumeItem{Engineered a RESTful Catalogue Management backend using \textbf{Spring Boot} and \textbf{PostgreSQL} with advanced filtering and pagination, reducing product search latency by \textbf{45\%}.}
+        \resumeItem{Designed scalable image storage and retrieval using \textbf{Google Cloud Storage}, which improved media delivery performance and reduced perceived page load times for users.}
+        \resumeItem{Implemented secure APIs and service-layer abstractions to enable maintainability and support future microservice extraction.}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+    \small{\item{
+     \textbf{Languages}{: Java, Python, SQL, JavaScript, C/C++} \\
+     \textbf{Developer Tools}{: Git, VS Code, PyCharm, IntelliJ, GitHub, Docker, Postman } \\
+     \textbf{Frameworks}{: Spring, Spring Boot, Spring Security, JavaFX } \\
+     \textbf{Cloud/Databases}{: Google Cloud, PostgreSQL, MySQL, H2 } \\
+     \textbf{Libraries}{: Hibernate, JPA, JDBC, React} \\
+     \textbf{Soft Skills}{: Team Leadership, Analytical Thinking, Strategic Planning, Communication  } \\
+    }}
+
+\section{Position of Responsibility}
+  \resumeSubHeadingListStart
+   \resumeItemListStart
+    \resumeItem{{Elected \textbf{President of the Co.L.D (Code.Learn.Develop) Club} (2024 - 2025)} \\
+   {Leading a community focused on coding guidance and technical skill development; organized workshops and mentorship sessions to boost member engagement and practical learning. }}
+      \resumeItem{Appointed as \textbf{Placement Executive, JNU Placement Cell} (2024 - 2025) \\
+      Actively involved in coordinating placement activities, assisting students in recruitment processes, and facilitating interactions between students and recruiters.} 
+     \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}
