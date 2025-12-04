@@ -693,7 +693,68 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize footer stats counter animation
     initFooterStatsCounter();
+    
+    // Initialize freelance showcase scroll
+    initFreelanceShowcase();
 });
+
+// ===============================
+// Freelance Showcase Horizontal Scroll
+// ===============================
+
+function initFreelanceShowcase() {
+    const track = document.querySelector('.showcase-track');
+    const prevBtn = document.querySelector('.showcase-nav.prev');
+    const nextBtn = document.querySelector('.showcase-nav.next');
+    const indicators = document.querySelectorAll('.showcase-indicators .indicator');
+    
+    if (!track) return;
+    
+    const cardWidth = 400; // card width + gap
+    let currentIndex = 0;
+    const totalCards = document.querySelectorAll('.case-study-card').length;
+    
+    // Update indicators
+    function updateIndicators() {
+        indicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentIndex);
+        });
+    }
+    
+    // Scroll to specific card
+    function scrollToCard(index) {
+        currentIndex = Math.max(0, Math.min(index, totalCards - 1));
+        track.scrollTo({
+            left: currentIndex * cardWidth,
+            behavior: 'smooth'
+        });
+        updateIndicators();
+    }
+    
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => scrollToCard(currentIndex - 1));
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => scrollToCard(currentIndex + 1));
+    }
+    
+    // Indicator clicks
+    indicators.forEach((ind, i) => {
+        ind.addEventListener('click', () => scrollToCard(i));
+    });
+    
+    // Update indicator on scroll
+    track.addEventListener('scroll', () => {
+        const scrollLeft = track.scrollLeft;
+        const newIndex = Math.round(scrollLeft / cardWidth);
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            updateIndicators();
+        }
+    });
+}
 
 // ===============================
 // Footer Stats Counter Animation

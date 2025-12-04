@@ -859,7 +859,7 @@
         </div>
     </section>
 
-    <!-- Freelance Section -->
+<!-- 
     <section class="freelance" id="freelance">
         <div class="container">
             <div class="section-header">
@@ -870,141 +870,117 @@
                 <p class="section-subtitle">Client projects I've had the privilege to work on</p>
             </div>
 
-            <div class="freelance-timeline">
-                <!-- Freelance Item 1 - Indic Belt Society -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>The Indic Belt Society - Academic Journal Platform</h3>
-                            <span class="timeline-date">
-                                <i class="far fa-calendar"></i> Sep 2025 - Oct 2025
-                            </span>
+           
+            <div class="freelance-showcase">
+                <button class="showcase-nav prev" aria-label="Previous project">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="showcase-track">
+                   
+                    <div class="case-study-card">
+                        <div class="case-study-image">
+                            <img src="assets/images/projects/indic-belt-society/image1.png" alt="Indic Belt Society">
+                            <div class="case-study-overlay">
+                                <span class="case-study-badge">Full Stack</span>
+                            </div>
                         </div>
-                        <p class="timeline-client">
-                            <i class="fas fa-briefcase"></i> Full-Stack Development | Educational Platform
-                        </p>
-                        <p class="timeline-description">
-                            Built a full-stack academic journal management platform featuring a modern React frontend and 
-                            PHP/MySQL backend. The platform provides digital access to scholarly publications with focus on 
-                            Indic knowledge systems and cultural heritage. Implemented RESTful APIs, dynamic content management, 
-                            and mobile-first responsive design.
-                        </p>
-                        <div class="timeline-tech">
-                            <span>React 18</span>
-                            <span>Vite</span>
-                            <span>PHP</span>
-                            <span>MySQL</span>
-                            <span>REST API</span>
-                            <span>Hostinger</span>
+                        <div class="case-study-content">
+                            <div class="case-study-header">
+                                <h3>The Indic Belt Society</h3>
+                                <span class="case-study-date"><i class="far fa-calendar-alt"></i> Sep - Oct 2025</span>
+                            </div>
+                            <p class="case-study-client"><i class="fas fa-building"></i> Academic Journal Platform</p>
+                            <p class="case-study-description">
+                                Full-stack journal management platform with React & PHP. RESTful APIs, dynamic content, and mobile-first design.
+                            </p>
+                            <div class="case-study-stats">
+                                <div class="stat"><span class="stat-value">60%</span><span class="stat-label">API Optimized</span></div>
+                                <div class="stat"><span class="stat-value">100%</span><span class="stat-label">Uptime</span></div>
+                            </div>
+                            <div class="case-study-tech">
+                                <span>React</span><span>PHP</span><span>MySQL</span><span>REST API</span>
+                            </div>
+                            <a href="https://indicbeltsociety.com" class="case-study-btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Live
+                            </a>
                         </div>
-                        <div class="timeline-achievements">
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>60% reduction in API response size through schema optimization</span>
+                    </div>
+
+                    <div class="case-study-card">
+                        <div class="case-study-image">
+                            <img src="assets/images/projects/catalogue/image1.png" alt="Catalogue Management System">
+                            <div class="case-study-overlay">
+                                <span class="case-study-badge">Enterprise</span>
                             </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Mobile-optimized PDF viewing with direct article access</span>
+                        </div>
+                        <div class="case-study-content">
+                            <div class="case-study-header">
+                                <h3>Catalogue Management System</h3>
+                                <span class="case-study-date"><i class="far fa-calendar-alt"></i> Nov 2024 - Mar 2025</span>
                             </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>100% uptime with fallback mechanisms and error handling</span>
+                            <p class="case-study-client"><i class="fas fa-user"></i> Individual Project | Pune</p>
+                            <p class="case-study-description">
+                                RESTful catalogue system with Spring Boot & PostgreSQL. Cloud-native architecture following 12-factor principles.
+                            </p>
+                            <div class="case-study-stats">
+                                <div class="stat"><span class="stat-value">45%</span><span class="stat-label">Faster Search</span></div>
+                                <div class="stat"><span class="stat-value">80+</span><span class="stat-label">Daily Users</span></div>
                             </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Deployed live at <a href="https://indicbeltsociety.com" target="_blank">indicbeltsociety.com</a></span>
+                            <div class="case-study-tech">
+                                <span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>GCP</span>
                             </div>
+                            <a href="#" class="case-study-btn">
+                                <i class="fas fa-info-circle"></i> Case Study
+                            </a>
+                        </div>
+                    </div>
+
+                   
+                    <div class="case-study-card">
+                        <div class="case-study-image">
+                            <img src="assets/images/projects/ice-factory/image1.png" alt="Ice Factory Management">
+                            <div class="case-study-overlay">
+                                <span class="case-study-badge">Team Project</span>
+                            </div>
+                        </div>
+                        <div class="case-study-content">
+                            <div class="case-study-header">
+                                <h3>Ice Factory Management</h3>
+                                <span class="case-study-date"><i class="far fa-calendar-alt"></i> Feb - Jun 2025</span>
+                            </div>
+                            <p class="case-study-client"><i class="fas fa-users"></i> Team Project | New Delhi</p>
+                            <p class="case-study-description">
+                                Microservices-based management system with JWT auth, role-based access control, and secure REST APIs.
+                            </p>
+                            <div class="case-study-stats">
+                                <div class="stat"><span class="stat-value">JWT</span><span class="stat-label">Secured</span></div>
+                                <div class="stat"><span class="stat-value">Agile</span><span class="stat-label">Workflow</span></div>
+                            </div>
+                            <div class="case-study-tech">
+                                <span>Spring Boot</span><span>React</span><span>Docker</span><span>GCP</span>
+                            </div>
+                            <a href="#" class="case-study-btn">
+                                <i class="fas fa-info-circle"></i> Case Study
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Freelance Item 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Catalogue Management System</h3>
-                            <span class="timeline-date">
-                                <i class="far fa-calendar"></i> Nov 2024 - Mar 2025
-                            </span>
-                        </div>
-                        <p class="timeline-client">
-                            <i class="fas fa-briefcase"></i> Freelance - Individual Project | Pune, India
-                        </p>
-                        <p class="timeline-description">
-                            Independently engineered a feature-rich, RESTful Catalogue Management System from concept to deployment, 
-                            utilizing Java Spring Boot and PostgreSQL to handle large-scale data persistence. Architected the 
-                            application using a clean, layered design, strictly adhering to 12-factor app principles.
-                        </p>
-                        <div class="timeline-tech">
-                            <span>Spring Boot</span>
-                            <span>React</span>
-                            <span>PostgreSQL</span>
-                            <span>Google Cloud</span>
-                            <span>Docker</span>
-                        </div>
-                        <div class="timeline-achievements">
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Deployed scalable image handling solution using GCP</span>
-                            </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Optimized search time by 45% with custom JPA queries</span>
-                            </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Serving 80+ daily users with 99% uptime</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="showcase-nav next" aria-label="Next project">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
 
-                <!-- Freelance Item 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Ice Factory Management System</h3>
-                            <span class="timeline-date">
-                                <i class="far fa-calendar"></i> Feb 2025 - Jun 2025
-                            </span>
-                        </div>
-                        <p class="timeline-client">
-                            <i class="fas fa-briefcase"></i> Freelance - Team Project | New Delhi
-                        </p>
-                        <p class="timeline-description">
-                            Actively drove the end-to-end development of a full-stack Ice Factory Management System, 
-                            architecting the solution around microservice principles for enhanced modularity and scalability. 
-                            Engineered robust backend REST APIs with comprehensive security measures.
-                        </p>
-                        <div class="timeline-tech">
-                            <span>Spring Boot</span>
-                            <span>React</span>
-                            <span>JWT Authentication</span>
-                            <span>Docker</span>
-                            <span>GCP</span>
-                        </div>
-                        <div class="timeline-achievements">
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Implemented JWT authentication and role-based access control</span>
-                            </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Built secure, stateless communication layer</span>
-                            </div>
-                            <div class="achievement">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Collaborated in Agile environment with rigorous code reviews</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+           
+            <div class="showcase-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
             </div>
         </div>
     </section>
+    End Freelance Section -->
 
     <!-- Education Section -->
     <section class="education" id="education">
@@ -1065,9 +1041,9 @@
                             <span><i class="fas fa-trophy"></i> Science Stream</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <!-- Certifications -->
+               
                 <div class="certifications-card">
                     <h3>
                         <i class="fas fa-certificate"></i> Technical Expertise
@@ -1217,102 +1193,142 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <!-- Animated Gradient Mesh Background -->
+        <div class="footer-mesh"></div>
+        
         <!-- Animated SVG Wave Background -->
         <div class="footer-waves">
             <svg class="wave wave-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path fill="rgba(139, 92, 246, 0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                <path fill="rgba(139, 92, 246, 0.15)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
             <svg class="wave wave-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path fill="rgba(139, 92, 246, 0.05)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                <path fill="rgba(236, 72, 153, 0.08)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
         </div>
 
-        <!-- Floating Particles Background -->
-        <div class="footer-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
+        <!-- Floating Orbs -->
+        <div class="footer-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
         </div>
 
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
+            <!-- Main Footer Grid -->
+            <div class="footer-main">
+                <!-- Brand Card -->
+                <div class="footer-card footer-brand-card">
+                    <div class="card-glow"></div>
                     <div class="footer-logo">
-                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="25" cy="25" r="23" stroke="url(#gradient1)" stroke-width="2" fill="none"/>
-                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="url(#gradient1)" font-size="20" font-weight="bold" font-family="monospace">SI</text>
-                            <defs>
-                                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                        <div class="logo-ring">
+                            <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+                                <defs>
+                                    <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#8b5cf6" />
+                                        <stop offset="50%" style="stop-color:#ec4899" />
+                                        <stop offset="100%" style="stop-color:#3b82f6" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="35" cy="35" r="32" stroke="url(#footerGrad)" stroke-width="2" fill="none" class="logo-circle"/>
+                                <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="url(#footerGrad)" font-size="24" font-weight="bold" font-family="monospace">SI</text>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>&lt;SaadInamdar/&gt;</h3>
-                    <p>Building scalable solutions that make a difference</p>
-                    <div class="footer-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="6">6</span>
-                            <span class="stat-label">Projects</span>
+                    <h3 class="brand-title">&lt;SaadInamdar/&gt;</h3>
+                    <p class="brand-tagline">Crafting digital experiences with code & creativity</p>
+                    
+                    <!-- Stats Row -->
+                    <div class="footer-stats-row">
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" data-target="6">6</span>
+                            <span class="mini-stat-label">Projects</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="15">15</span>
-                            <span class="stat-label">Skills</span>
+                        <div class="stat-divider"></div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" data-target="15">15+</span>
+                            <span class="mini-stat-label">Skills</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="530">530</span>
-                            <span class="stat-label">Commits</span>
+                        <div class="stat-divider"></div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" data-target="530">530</span>
+                            <span class="mini-stat-label">Commits</span>
                         </div>
                     </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
-                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
+
+                <!-- Navigation Card -->
+                <div class="footer-card footer-nav-card">
+                    <h4 class="card-title">Explore</h4>
+                    <nav class="footer-nav">
+                        <a href="#home" class="nav-item">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="#about" class="nav-item">
+                            <i class="fas fa-user"></i>
+                            <span>About</span>
+                        </a>
+                        <a href="#skills" class="nav-item">
+                            <i class="fas fa-cogs"></i>
+                            <span>Skills</span>
+                        </a>
+                        <a href="#projects" class="nav-item">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Projects</span>
+                        </a>
+                        <a href="#freelance" class="nav-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Freelance</span>
+                        </a>
+                        <a href="#education" class="nav-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Education</span>
+                        </a>
+                    </nav>
                 </div>
-                <div class="footer-social">
-                    <h4>Connect With Me</h4>
-                    <div class="social-links">
-                        <a href="https://github.com/saadinamdar7890" target="_blank" class="social-link github">
+
+                <!-- Connect Card -->
+                <div class="footer-card footer-connect-card">
+                    <h4 class="card-title">Connect</h4>
+                    <div class="social-grid">
+                        <a href="https://github.com/saad-inamdar7890" target="_blank" class="social-tile github">
                             <i class="fab fa-github"></i>
-                            <span class="social-tooltip">GitHub</span>
+                            <span>GitHub</span>
                         </a>
-                        <a href="https://linkedin.com/in/saad-inamdar789" target="_blank" class="social-link linkedin">
+                        <a href="https://linkedin.com/in/saad-inamdar789" target="_blank" class="social-tile linkedin">
                             <i class="fab fa-linkedin"></i>
-                            <span class="social-tooltip">LinkedIn</span>
+                            <span>LinkedIn</span>
                         </a>
-                        <a href="https://leetcode.com/u/saadinmadar789/" target="_blank" class="social-link leetcode">
+                        <a href="https://leetcode.com/u/saadinmadar789/" target="_blank" class="social-tile leetcode">
                             <i class="fas fa-code"></i>
-                            <span class="social-tooltip">LeetCode</span>
+                            <span>LeetCode</span>
                         </a>
-                        <a href="mailto:saadinamdar121@gmail.com" class="social-link email">
+                        <a href="mailto:saadinamdar121@gmail.com" class="social-tile email">
                             <i class="fas fa-envelope"></i>
-                            <span class="social-tooltip">Email</span>
+                            <span>Email</span>
                         </a>
                     </div>
-                    <div class="footer-cta">
-                        <a href="#contact" class="cta-button">
-                            <span>Let's Work Together</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    
+                    <!-- CTA -->
+                    <a href="Resume.pdf" target="_blank" class="footer-cta-btn">
+                        <span class="btn-text">Download Resume</span>
+                        <span class="btn-icon"><i class="fas fa-download"></i></span>
+                        <div class="btn-shine"></div>
+                    </a>
                 </div>
             </div>
+
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>&copy; 2024 Saad Inamdar. Designed & Built with <i class="fas fa-heart heartbeat"></i> and <i class="fas fa-coffee"></i></p>
-                <div class="footer-bottom-links">
-                    <a href="#home">Back to Top <i class="fas fa-arrow-up"></i></a>
+                <div class="footer-bottom-left">
+                    <p>&copy; 2024 Saad Inamdar</p>
+                    <span class="separator">•</span>
+                    <p>Built with <i class="fas fa-heart pulse-heart"></i> & <i class="fas fa-coffee"></i></p>
                 </div>
+                <a href="#home" class="back-to-top">
+                    <span>Back to Top</span>
+                    <i class="fas fa-arrow-up"></i>
+                </a>
             </div>
         </div>
     </footer>
