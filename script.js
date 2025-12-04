@@ -173,9 +173,29 @@ sectionHeaders.forEach(header => {
     headerObserver.observe(header);
 });
 
-// Observe all sections and cards
+// ===============================
+// Staggered Scroll-Reveal for Skill Cards
+// ===============================
+
+const skillCategoryObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const delay = entry.target.dataset.revealDelay || 0;
+            setTimeout(() => {
+                entry.target.classList.add('revealed');
+            }, parseInt(delay));
+            skillCategoryObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+const skillCategories = document.querySelectorAll('.skill-category');
+skillCategories.forEach(card => {
+    skillCategoryObserver.observe(card);
+});
+
+// Observe all sections and cards (excluding skill-category now handled above)
 const animateElements = document.querySelectorAll(`
-    .skill-category,
     .project-card,
     .timeline-item,
     .education-card,
@@ -197,64 +217,66 @@ animateElements.forEach(el => {
 
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Validate form
-    if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address');
-        return;
-    }
-    
-    // Simulate form submission (replace with actual backend API)
-    const formData = {
-        name,
-        email,
-        subject,
-        message
-    };
-    
-    console.log('Form submitted:', formData);
-    
-    // Show success message
-    alert('Thank you for your message! I will get back to you soon.');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // In a real application, you would send this data to your backend:
-    /*
-    fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => response.json())
-    .then(data => {
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Validate form
+        if (!name || !email || !subject || !message) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // Simulate form submission (replace with actual backend API)
+        const formData = {
+            name,
+            email,
+            subject,
+            message
+        };
+        
+        console.log('Form submitted:', formData);
+        
+        // Show success message
         alert('Thank you for your message! I will get back to you soon.');
+        
+        // Reset form
         contactForm.reset();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error sending your message. Please try again.');
+        
+        // In a real application, you would send this data to your backend:
+        /*
+        fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error sending your message. Please try again.');
+        });
+        */
     });
-    */
-});
+}
 
 // ===============================
 // Active Navigation Link
